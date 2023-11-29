@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWifi } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
@@ -11,20 +10,26 @@ const PlaceCard = ({ place }) => {
           to={`/details/${place._id}`}
           className="text-dark text-decoration-none"
         >
-          <img
-            src={place.imageUrl}
-            className="card-img-top"
-            alt={place.title}
-          />
+          <div style={{ height: "16rem", overflow: "hidden" }}>
+            <img
+              src={place.imageUrl}
+              className="card-img-top"
+              alt={place.title}
+              style={{ height: "100%", width: "100%", objectFit: "cover" }}
+            />
+          </div>
           <div className="card-body">
             <h5 className="card-title">
               <strong> {place.title}</strong>
             </h5>
             <p className="card-text text-muted">
-              {place.description
-                ? `${place.description.substring(0, 50)}...`
-                : "No description available"}
+              {place.location ? `${place.location}` : "No location available"}
             </p>
+            {/* <p className="card-text text-muted">
+              {place.description
+                ? `${place.description.substring(0, 20)}...`
+                : "No description available"}
+            </p> */}
             <div className="flex justify-content-spacearound">
               <span className="text-muted">
                 {" "}
