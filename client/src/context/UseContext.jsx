@@ -5,8 +5,109 @@ import axios from "axios";
 const defaultState = {
   token: null,
   user: null,
+  bookings: [],
+  setToken: (token) => {},
+  makeBooking: (booking) => {},
+};
+
+// UserContext
+const UserContext = createContext(defaultState);
+
+// UserProvider component to provide the user context to its children
+const UserProvider = ({ children }) => {
+  // User state
+  const [userState, setUserState] = useState(defaultState);
+
+  // Set Token
+  const setToken = (token) => {
+    setUserState((prevState) => ({ ...prevState, token }));
+  };
+
+  // Booking
+  const makeBooking = (booking) => {
+    setUserState((prevState) => ({
+      ...prevState,
+      bookings: [...prevState.bookings, booking],
+    }));
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem("TOKEN");
+    if (token !== null) {
+      setUserState((prevState) => ({
+        ...prevState,
+        token,
+      }));
+    }
+  }, []);
+
+  // Fetch user data and bookings when token changes
+  useEffect(() => {
+    if (userState.token) {
+      fetchUserData();
+    }
+  }, [userState.token]);
+
+  // Fetch user data and bookings
+  const fetchUserData = async () => {
+    try {
+      const userData = await axios.get(
+        "http://localhost:8000/api/users/profile",
+        {
+          headers: {
+            Authorization: `Bearer ${userState.token}`,
+          },
+        }
+      );
+      const user = await userData.json();
+
+      const bookingsData = await axios.get(
+        "http://localhost:8000/api/bookings/user/profile",
+        {
+          headers: {
+            Authorization: `Bearer ${userState.token}`,
+          },
+        }
+      );
+      const bookings = await bookingsData.json();
+
+      // Update user state with user data and bookings
+      setUserState((prevState) => ({ ...prevState, user, bookings }));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // Provide the user context value to its children components
+  return (
+    <UserContext.Provider value={{ ...userState, setToken, makeBooking }}>
+      {children}
+    </UserContext.Provider>
+  );
+};
+
+// Custom hook to access the user context value
+export const useUser = () => {
+  const context = useContext(UserContext);
+  if (!context) {
+    throw new Error("useUser must be used within a UserProvider");
+  }
+  return context;
+};
+
+export default UserProvider;
+
+/* 
+import React, { createContext, useContext, useState, useEffect } from "react";
+import axios from "axios";
+
+// Default state
+const defaultState = {
+  token: null,
+  user: null,
   reservations: [],
   setToken: (token) => {},
+  // makeReservation: (reservation) => {},
   makeReservation: (reservation) => {},
 };
 
@@ -24,6 +125,7 @@ const UserProvider = ({ children }) => {
   };
 
   // Make Reservation
+  // const makeReservation = (reservation) => {
   const makeReservation = (reservation) => {
     setUserState((prevState) => ({
       ...prevState,
@@ -51,7 +153,7 @@ const UserProvider = ({ children }) => {
   // Fetch user data and reservations
   const fetchUserData = async () => {
     try {
-      // const userData = await axios.get("http://localhost:5000/api/users/me", {
+      // const userData = await axios.get("http://localhost:8000/api/users/me", {
       const userData = await axios.get(
         "http://localhost:8000/api/users/profile",
         {
@@ -62,7 +164,7 @@ const UserProvider = ({ children }) => {
       );
 
       const reservationsData = await axios.get(
-        // "http://localhost:5000/api/reservations/user/me",
+        // "http://localhost:8000/api/reservations/user/me",
         "http://localhost:8000/api/reservations/user/profile",
         {
           headers: {
@@ -97,3 +199,5 @@ export const useUser = () => {
 };
 
 export default UserProvider;
+
+*/

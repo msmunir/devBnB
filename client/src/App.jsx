@@ -9,16 +9,16 @@ import Register from "./pages/Register";
 import About from "./pages/About";
 import Support from "./pages/Support";
 import Detail from "./pages/Detail";
-import AccommodationProvider from "./context/AccommodationContext";
 import UserProvider from "./context/UseContext";
 // import UserProvider from "./context/UserContext";
-// import PlaceProvider from "./context/PlaceContext";
+import PlaceProvider from "./context/PlaceContext";
+// import AccommodationProvider from "./context/AccommodationContext";
 
 const App = () => {
   return (
     <BrowserRouter>
-      <AccommodationProvider>
-        {/* <PlaceProvider> */}
+      {/* <AccommodationProvider> */}
+      <PlaceProvider>
         <UserProvider>
           <div className="container siteWrap">
             <Navbar />
@@ -35,8 +35,8 @@ const App = () => {
             <Footer />
           </div>
         </UserProvider>
-        {/* </PlaceProvider> */}
-      </AccommodationProvider>
+      </PlaceProvider>
+      {/* </AccommodationProvider> */}
     </BrowserRouter>
   );
 };

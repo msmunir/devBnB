@@ -10,14 +10,14 @@ app.use(express.urlencoded({ extended: false }));
 
 //Controllers
 app.use("/api/users", require("./Controllers/userController"));
-app.use(
-  "/api/accommodations",
-  require("./Controllers/accommodationController")
-);
-app.use("/api/reservations", require("./Controllers/reservationController"));
+// app.use(
+//   "/api/accommodations",
+//   require("./Controllers/accommodationController")
+// );
+// app.use("/api/reservations", require("./Controllers/reservationController"));
 
-// app.use("/api/places", require("./Controllers/placeController"));
-// app.use("/api/bookings", require("./Controllers/bookingController"));
+app.use("/api/places", require("./Controllers/placeController"));
+app.use("/api/bookings", require("./Controllers/bookingController"));
 
 //Export app
 module.exports = app;

@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
-const accommodationSchema = mongoose.Schema({
+// Schema for place
+const placeSchema = mongoose.Schema({
   title: { type: String, required: true },
   host: { type: String, required: true },
   location: { type: String, required: true },
@@ -10,4 +11,4 @@ const accommodationSchema = mongoose.Schema({
   images: [String],
 });
 
-module.exports = mongoose.model("Accommodation", accommodationSchema);
+module.exports = mongoose.model("place", placeSchema);
