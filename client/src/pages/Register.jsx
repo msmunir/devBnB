@@ -47,8 +47,8 @@ const Register = () => {
   };
 
   return (
-    <div className="my-5" style={{ background: "black", borderRadius: "1rem" }}>
-      <section className=" dark-grey-text mb-5">
+    <div className="row mt-5">
+      <section className="mb-5 d-flex flex-row justify-content-center align-item-center">
         <div
           className="card"
           style={{
@@ -56,6 +56,7 @@ const Register = () => {
               "linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(108,108,108,1) 50%, rgba(0,0,0,1) 100%)",
             borderRadius: "1rem",
             color: "white",
+            width: "70%",
           }}
         >
           <div className="card-body p-5">

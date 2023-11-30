@@ -17,9 +17,9 @@ const App = () => {
     <BrowserRouter>
       <PlaceProvider>
         <UserProvider>
-          <div className="container siteWrap">
+          <div className=" siteWrap">
             <Navbar />
-            <div className="outlet">
+            <div className="container outlet">
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<LoginForm />} />
