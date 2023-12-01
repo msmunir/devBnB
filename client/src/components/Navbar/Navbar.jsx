@@ -1,9 +1,10 @@
 import React from "react";
-// import "./navbar.css";
+
 import { Link, NavLink } from "react-router-dom";
 import { useUser } from "../../context/UseContext";
 import { FaUserCircle } from "react-icons/fa";
 import { FaHamburger } from "react-icons/fa";
+import "./navbar.css";
 
 const Navbar = () => {
   const user = useUser();
