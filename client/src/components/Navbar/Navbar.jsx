@@ -14,24 +14,13 @@ const Navbar = () => {
     user.setToken(null);
 
     // Redirect to login
-    window.location.href = "/";
+    // window.location.href = "/";
   };
 
   return (
-    <nav
-      className="navbar navbar-expand-lg"
-      style={{
-        color: "#fff",
-        background:
-          "linear-gradient( 180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 117, 255, 1) 50%, rgba(0, 0, 0, 1) 100%)",
-      }}
-    >
+    <nav className="navbar navbar-expand-lg">
       <div className="container-fluid mx-5">
-        <Link
-          className="navbar-brand"
-          to="/"
-          style={{ color: "#fff", fontWeight: "bold" }}
-        >
+        <Link className="navbar-brand" to="/">
           DevBnB
         </Link>
         <button
@@ -47,10 +36,7 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           {/* leftside */}
-          <ul
-            className="navbar-nav me-auto text-uppercase font-weight-normal"
-            style={{ color: "#fff" }}
-          >
+          <ul className="navbar-nav me-auto text-uppercase font-weight-normal">
             <li className="nav-item">
               <NavLink className="nav-link" to="/">
                 Home
@@ -80,7 +66,8 @@ const Navbar = () => {
                 <NavLink
                   onClick={handleLogout}
                   className="nav-link"
-                  to="/logout"
+                  to="/"
+                  style={{ color: "#fff" }}
                 >
                   Logout
                 </NavLink>
@@ -105,11 +92,6 @@ const Navbar = () => {
                       Login
                     </NavLink>
                   </li>
-                  {/* <li>
-                  <NavLink className="dropdown-item" to="/logout">
-                    Logout
-                  </NavLink>
-                </li> */}
                   <li>
                     <NavLink className="dropdown-item" to="/register">
                       Register
