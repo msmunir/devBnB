@@ -1,9 +1,10 @@
 import React from "react";
-import "./navbar.css";
+// import "./navbar.css";
 import { Link, NavLink } from "react-router-dom";
 import { useUser } from "../../context/UseContext";
 import { FaUserCircle } from "react-icons/fa";
 import { FaHamburger } from "react-icons/fa";
+
 const Navbar = () => {
   const user = useUser();
 
@@ -12,13 +13,24 @@ const Navbar = () => {
     user.setToken(null);
 
     // Redirect to login
-    window.location.href = "/login";
+    window.location.href = "/";
   };
 
   return (
-    <nav className="navbar navbar-expand-lg">
+    <nav
+      className="navbar navbar-expand-lg"
+      style={{
+        color: "#fff",
+        background:
+          "linear-gradient( 180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 117, 255, 1) 50%, rgba(0, 0, 0, 1) 100%)",
+      }}
+    >
       <div className="container-fluid mx-5">
-        <Link className="navbar-brand" to="/">
+        <Link
+          className="navbar-brand"
+          to="/"
+          style={{ color: "#fff", fontWeight: "bold" }}
+        >
           DevBnB
         </Link>
         <button
@@ -34,7 +46,10 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           {/* leftside */}
-          <ul className="navbar-nav me-auto text-uppercase font-weight-normal">
+          <ul
+            className="navbar-nav me-auto text-uppercase font-weight-normal"
+            style={{ color: "#fff" }}
+          >
             <li className="nav-item">
               <NavLink className="nav-link" to="/">
                 Home
