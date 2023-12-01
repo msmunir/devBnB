@@ -1,8 +1,9 @@
 import React from "react";
-// import "./navbar.css";
+import "./navbar.css";
 import { Link, NavLink } from "react-router-dom";
 import { useUser } from "../../context/UseContext";
-
+import { FaUserCircle } from "react-icons/fa";
+import { FaHamburger } from "react-icons/fa";
 const Navbar = () => {
   const user = useUser();
 
@@ -15,8 +16,8 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
-      <div className="container-fluid mx-4">
+    <nav className="navbar navbar-expand-lg">
+      <div className="container-fluid mx-5">
         <Link className="navbar-brand" to="/">
           DevBnB
         </Link>
@@ -32,53 +33,76 @@ const Navbar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
-          {/* <ul className="navbar-nav ms-auto"> */}
-          <ul className="navbar-nav me-auto mb-2 ms-4 mb-lg-0 ">
+          {/* leftside */}
+          <ul className="navbar-nav me-auto text-uppercase font-weight-normal">
             <li className="nav-item">
               <NavLink className="nav-link" to="/">
                 Home
               </NavLink>
             </li>
-            {/* {user && (
-              <> */}
             <li className="nav-item">
-              <NavLink className="nav-link" to="/products">
-                Products
+              <NavLink className="nav-link" to="/details/:id">
+                Details
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/add">
-                Add
+              <NavLink className="nav-link" to="/about">
+                About Us
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/orders">
-                Orders
+              <NavLink className="nav-link" to="/support">
+                Support
               </NavLink>
             </li>
           </ul>
-          <span className="navbar-text">
-            <ul className="navbar-nav mb-2 ms-4 mb-lg-0 ">
+
+          {/* Right side */}
+          <ul className="navbar-nav ">
+            {user.token ? (
               <li className="nav-item">
                 <NavLink
-                  className="nav-link"
-                  to="/login"
                   onClick={handleLogout}
-                >
-                  Login
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink
                   className="nav-link"
-                  to="/login"
-                  onClick={handleLogout}
+                  to="/logout"
                 >
                   Logout
                 </NavLink>
               </li>
-            </ul>
-          </span>
+            ) : (
+              <li className="nav-item dropdown">
+                <Link
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <span className="navRight">
+                    <FaHamburger className="icon" />
+                    <FaUserCircle className="icon" />
+                  </span>
+                </Link>
+                <ul className="dropdown-menu">
+                  <li>
+                    <NavLink className="dropdown-item" to="/login">
+                      Login
+                    </NavLink>
+                  </li>
+                  {/* <li>
+                  <NavLink className="dropdown-item" to="/logout">
+                    Logout
+                  </NavLink>
+                </li> */}
+                  <li>
+                    <NavLink className="dropdown-item" to="/register">
+                      Register
+                    </NavLink>
+                  </li>
+                </ul>
+              </li>
+            )}
+          </ul>
         </div>
       </div>
     </nav>
