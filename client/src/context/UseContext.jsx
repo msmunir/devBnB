@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import axios from "axios";
+// import axios from "axios";
 
 // Default state
 const defaultState = {
@@ -32,7 +32,7 @@ const UserProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("TOKEN");
+    const token = localStorage.getItem("token");
     if (token !== null) {
       setUserState((prevState) => ({
         ...prevState,
@@ -49,32 +49,64 @@ const UserProvider = ({ children }) => {
   }, [userState.token]);
 
   // Fetch user data and bookings
+  // const fetchUserData = async () => {
+  //   try {
+  //     const userData = await axios.get(
+  //       "http://localhost:8000/api/users/profile",
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${userState.token}`,
+  //         },
+  //       }
+  //     );
+  //     // console.log("userData", userData);
+
+  //     const user = await userData.json();
+  //     console.log("user", user);
+
+  //     const bookingsData = await axios.get(
+  //       "http://localhost:8000/api/bookings/user/profile",
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${userState.token}`,
+  //         },
+  //       }
+  //     );
+  //     const bookings = await bookingsData.json();
+
+  //     // Update user state with user data and bookings
+  //     setUserState((prevState) => ({ ...prevState, user, bookings }));
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
   const fetchUserData = async () => {
     try {
-      const userData = await axios.get(
-        "http://localhost:8000/api/users/profile",
-        {
-          headers: {
-            Authorization: `Bearer ${userState.token}`,
-          },
-        }
-      );
-      const user = await userData.json();
+      // Simulated API response with Authorization header
+      const userData = await fetch("http://localhost:8000/api/users/profile", {
+        headers: {
+          Authorization: `Bearer ${userState.token}`, // Add Bearer token here
+        },
+      });
 
-      const bookingsData = await axios.get(
+      const bookingsData = await fetch(
         "http://localhost:8000/api/bookings/user/profile",
         {
           headers: {
-            Authorization: `Bearer ${userState.token}`,
+            Authorization: `Bearer ${userState.token}`, // Add Bearer token here
           },
         }
       );
+
+      // Simulated JSON parsing
+      const user = await userData.json();
       const bookings = await bookingsData.json();
 
-      // Update user state with user data and bookings
+      // Update user state with fetched data
       setUserState((prevState) => ({ ...prevState, user, bookings }));
     } catch (error) {
-      console.log(error);
+      console.error("Error fetching data:", error);
     }
   };
 

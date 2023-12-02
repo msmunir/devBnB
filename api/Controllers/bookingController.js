@@ -4,6 +4,7 @@ const auth = require("../Authentication/auth");
 
 // Create a new booking
 router.post("/", auth.verifyToken, bookingModel.createNewBooking);
+// router.post("/", bookingModel.createNewBooking);
 
 // Get all bookings
 router.get("/", bookingModel.getBookings);

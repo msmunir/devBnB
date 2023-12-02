@@ -34,7 +34,7 @@ const PlaceProvider = ({ children }) => {
     axios
       .get(`http://localhost:8000/api/places/${placeId}`)
       .then((response) => {
-        console.log(response.data);
+        console.log("Place information", response.data);
         setDetailPlace(response.data);
       })
       .catch((error) => {

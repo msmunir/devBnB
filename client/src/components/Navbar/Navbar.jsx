@@ -1,16 +1,15 @@
-import React from "react";
-
 import { Link, NavLink } from "react-router-dom";
 import { useUser } from "../../context/UseContext";
 import { FaUserCircle } from "react-icons/fa";
 import { FaHamburger } from "react-icons/fa";
-import "./navbar.css";
+// import "./navbar.css";
+import "../../styles/navbar.css";
 
 const Navbar = () => {
   const user = useUser();
 
   const handleLogout = () => {
-    localStorage.removeItem("TOKEN");
+    localStorage.removeItem("token");
     user.setToken(null);
 
     // Redirect to login

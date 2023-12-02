@@ -38,7 +38,7 @@ const Register = () => {
       if (response.data.token) {
         localStorage.setItem("token", response.data.token);
         user.setToken("token", response.data.token);
-        navigate("/login");
+        navigate("/");
       }
     } catch (err) {
       console.log(err);

@@ -11,4 +11,4 @@ const placeSchema = mongoose.Schema({
   images: [String],
 });
 
-module.exports = mongoose.model("place", placeSchema);
+module.exports = mongoose.model("Place", placeSchema);

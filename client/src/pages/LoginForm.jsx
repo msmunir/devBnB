@@ -30,18 +30,22 @@ const LoginForm = () => {
           password,
         }
       );
-      console.log(response);
+      console.log("Responce from api ", response.data);
+
+      if (response.status === 200) console.log("Login successfull");
+
       if (response.data.token) {
         localStorage.setItem("token", response.data.token);
         user.setToken("token", response.data.token);
         navigate("/");
+        user.setToken(response.data.token);
       } else {
         alert("Error logging in user");
-        console.log(response);
+        console.log("Response from api ", response, email, password);
       }
     } catch (err) {
       console.log(err);
-      alert("Error logging in user");
+      alert("Error, logging in user");
     }
   };
 

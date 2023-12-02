@@ -1,25 +1,26 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useUser } from "../context/UseContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { usePlaces } from "../context/PlaceContext";
-import axios from "axios";
 import DatePicker from "react-datepicker";
-// import "../styles/details.css";
+import "react-datepicker/dist/react-datepicker.css";
+import {
+  FaUserCircle,
+  FaBed,
+  FaDoorOpen,
+  FaWifi,
+  FaCar,
+  FaUmbrellaBeach,
+  FaPizzaSlice,
+  FaBath,
+} from "react-icons/fa";
+import { GiTennisCourt } from "react-icons/gi";
+import { FaBagShopping, FaLocationDot, FaMugSaucer } from "react-icons/fa6";
 
 const Detail = () => {
   const userState = useUser();
   console.log(userState);
-
-  // const { user } = userState;
-  // console.log(user);
-
-  //
   const params = useParams();
-  // const places = usePlaces();
-  // console.log(places);
-  // const { detailPlace, getDetailPlace } = places;
-  // const place = places.find((place) => place.id === params.id);
-
   const { detailPlace, getDetailPlace } = usePlaces();
 
   // date picker
@@ -53,33 +54,48 @@ const Detail = () => {
 
     if (!startDate || !endDate) return alert("Please select date");
 
-    const bookingData = {
-      place: detailPlace.id,
-      checkIn: startDate,
-      checkOut: endDate,
-    };
-    console.log(bookingData);
+    if (startDate && endDate) {
+      console.log("Place", detailPlace);
 
-    try {
-      const res = await axios.post(
-        "http://localhost:8000/api/bookings",
-        bookingData,
-        {
+      const bookingData = {
+        place: detailPlace._id,
+        checkin: startDate,
+        checkout: endDate,
+      };
+
+      try {
+        const response = await fetch("http://localhost:8000/api/bookings", {
+          method: "POST",
           headers: {
+            "Content-Type": "application/json",
             Authorization: `Bearer ${userState.token}`,
           },
+          body: JSON.stringify(bookingData),
+        });
+        if (response.ok) {
+          console.log("booking successful!");
+
+          navigate("/bookings");
+        } else {
+          console.error("booking failed");
+          console.log(response);
         }
-      );
-      console.log(res);
-      navigate("/bookings");
-    } catch (error) {
-      console.log(error);
+      } catch (error) {
+        console.error("booking failed");
+        console.log(error);
+      }
+    } else {
+      console.log("Please select date");
+      alert("Please select date");
     }
   };
 
   return (
     <>
-      <div className="imgCon row row-cols-1 row-cols-sm-4 row-cols-md-8 row-cols-lg-12 mt-5">
+      <div
+        className="imgCon row row-cols-1 row-cols-sm-4 row-cols-md-8 row-cols-lg-12 mt-5
+        d-flex flex-row justify-content-center align-items-center"
+      >
         <div className="imgLeft col-sm-4 col-md-7">
           <img
             className="img-fluid"
@@ -121,42 +137,143 @@ const Detail = () => {
           ))}
         </div>
       </div>
+
+      {/* Desctiption */}
       <div className="row row-cols-1 row-cols-sm-4 row-cols-md-8 row-cols-lg-12 mt-5">
-        <div className="detailLeft col-sm-4 col-md-8">
+        <div
+          className="detailLeft col-sm-4 col-md-8"
+          style={{
+            color: "#fff",
+            backgroundColor: "#051d47d3",
+            padding: "15px",
+            borderRadius: "10px",
+          }}
+        >
           <h1>{detailPlace.title}</h1>
-          <p>{detailPlace.description}</p>
+          <p>2 Quests - 1 Bedroom - 1 Bed - 2 Bathrooms</p>
+          <hr />
+          <p>
+            <FaUserCircle /> {detailPlace.host} is your host
+            <br />
+            <span style={{ marginLeft: "1.4rem", fontSize: ".8rem" }}>
+              Super host.
+            </span>
+          </p>
+          <hr />
+          <p>
+            <FaDoorOpen /> Self Chek-in
+            <br />
+            <span style={{ marginLeft: "1.4rem", fontSize: ".8rem" }}>
+              You can check in with the doorman.
+            </span>
+            <br />
+            <FaUserCircle /> {detailPlace.host} is your host
+            <br />
+            <span style={{ marginLeft: "1.4rem", fontSize: ".8rem" }}>
+              Super hosts are experienced, highly rated hosts who are committed
+              to providing great stays for guests.
+            </span>
+            <br />
+            <FaLocationDot /> {detailPlace.location}
+            <br />
+            <span style={{ marginLeft: "1.4rem", fontSize: ".8rem" }}>
+              Exact location information is provided after a booking is
+              confirmed.
+            </span>
+          </p>
+          <hr />
+          <p>
+            <h6> Description</h6>
+            {detailPlace.description}
+            <hr />
+          </p>
+          <p>
+            <h6>Where you will sleep</h6>
+          </p>
+          <p>1 bedroom</p>
+          <p>
+            <FaBed /> Queen bed
+          </p>
+          <hr />
+          <h6>What this place offers</h6>
+          <p className="d-flex flex-row">
+            <p>
+              <FaWifi /> Wifi <br />
+              <FaBagShopping /> Lugg age dropoff allowed <br />
+              <FaCar /> Free parking on premises <br />
+              <FaUmbrellaBeach /> Pool <br />
+            </p>
+            <p className="mx-5">
+              <FaMugSaucer /> Coffe maker <br />
+              <FaPizzaSlice /> Food delivery service <br />
+              <FaBath /> Bathtub <br />
+              <GiTennisCourt /> Tennis court <br />
+            </p>
+          </p>
+          <hr />
         </div>
-        <div className="detailRight col-sm-4 col-md-4">
+        <div className="detailRight col-sm-4 col-md-4 mb-3">
           <div className="card">
             <div className="card-body">
               <h5 className="card-title">Booking</h5>
               <div className="form-group">
                 <label htmlFor="startDate">Check In</label>
+                <br />
                 <DatePicker
-                  className="form-control"
+                  className="form-control "
                   id="startDate"
                   selected={startDate}
                   onChange={handleStartDate}
-                  dateFormat="dd/MM/yyyy"
                   minDate={new Date()}
+                  dateFormat="dd/MM/yyyy"
                   showDisabledMonthNavigation
+                  // selected={startDate}
+                  // onChange={handleStartDate}
+                  // selectsStart
+                  // startDate={startDate}
+                  // endDate={endDate}
+                  // className="form-control"
                 />
               </div>
-              <div className="form-group">
+              <div className="form-group mb-3">
                 <label htmlFor="endDate">Check Out</label>
+                <br />
                 <DatePicker
                   className="form-control"
                   id="endDate"
                   selected={endDate}
                   onChange={handleEndDate}
-                  dateFormat="dd/MM/yyyy"
                   minDate={startDate}
+                  dateFormat="dd/MM/yyyy"
                   showDisabledMonthNavigation
+                  // selected={endDate}
+                  // onChange={handleEndDate}
+                  // selectsEnd
+                  // startDate={startDate}
+                  // endDate={endDate}
+                  // minDate={startDate}
+                  // className="form-control"
                 />
               </div>
-              <button className="btn btn-primary" onClick={handleBooking}>
-                Book Now
+              <button
+                className="btn"
+                onClick={handleBooking}
+                style={{
+                  borderRadius: "5px",
+                  color: "#fff",
+                  background:
+                    "var(--linear-black-green-black, linear-gradient(180deg, #000 0%, #42FF00 52.08%, #000 100%)",
+                  // border: "none",
+                  padding: "5px",
+                  width: "120px",
+                }}
+              >
+                Book now
               </button>
+              <br />
+              <p>
+                <strong>{detailPlace.price} kr</strong>/ night
+              </p>
             </div>
           </div>
         </div>
