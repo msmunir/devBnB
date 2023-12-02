@@ -1,0 +1,13 @@
+.imgCon {
+  width: 100%;
+  min-height: 420px;
+  /* display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  flex-wrap: wrap; */
+  overflow: hidden;
+  /* border-radius: 10px; */
+  /* box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2); */
+}

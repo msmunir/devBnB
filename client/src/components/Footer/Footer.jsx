@@ -7,8 +7,11 @@ import { FaYoutube } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="footer mt-5 ">
-      <div className="row footer-top container-fluid">
+    <footer className="footer mt-5 mx-5">
+      <div className="row footer-top ">
+        {/* <hr
+          style={{ color: "#8d7a7a55", width: "95%", marginLeft: "1.5rem" }}
+        /> */}
         <div className="row col-sm-6 col-md-12" style={{ color: "#fff" }}>
           <div
             className="row col-md-12 text-center pt-5"
@@ -157,9 +160,10 @@ const Footer = () => {
             </div>
           </div>
           {/* footer-bottom */}
+
           <div
             className="col-sm-6 col-md-12 mt-5 pt-4 pb-4"
-            style={{ borderTop: "1px solid #8d7a7a55" }}
+            style={{ borderTop: "1px solid #8d7a7a55", width: "100%" }}
           >
             <div
               className="footer-bottom"

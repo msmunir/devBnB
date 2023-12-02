@@ -11,6 +11,7 @@ import Support from "./pages/Support";
 import Detail from "./pages/Detail";
 import UserProvider from "./context/UseContext";
 import PlaceProvider from "./context/PlaceContext";
+import Bookings from "./pages/Bookings";
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
                 <Route path="/about" element={<About />} />
                 <Route path="/support" element={<Support />} />
                 <Route path="/details/:id" element={<Detail />} />
+                <Route path="/bookings" element={<Bookings />} />
               </Routes>
             </div>
             <Footer />
