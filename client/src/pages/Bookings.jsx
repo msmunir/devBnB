@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { useUser } from "./../context/UseContext";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Bookings = () => {
   const [bookings, setBookings] = useState([]);
   // const [activeModal, setActiveModal] = useState(null);
+
   const userState = useUser();
 
   useEffect(() => {
@@ -45,23 +47,6 @@ const Bookings = () => {
     return (totalNights / (1000 * 60 * 60 * 24)) * price;
   };
 
-  // const handleContinueClick = () => {
-  //   setActiveModal("payment");
-  // };
-
-  // const handlePay = () => {
-  //   setActiveModal("confirmation");
-  // };
-
-  // const handleCloseModal = () => {
-  //   setActiveModal(null);
-  // };
-
-  // loading data from server
-  if (!bookings) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <div
       className="card mt-5 mb-3 w-75 mx-auto"
@@ -69,7 +54,6 @@ const Bookings = () => {
         backgroundColor: "var(--background-black-50, rgba(0, 0, 0, 0.50))",
         color: "#fff",
         borderRadius: "10px",
-        // maxWidth: "540px",
       }}
     >
       <div className="card-header">
@@ -118,8 +102,17 @@ const Bookings = () => {
                     >
                       Delete
                     </button>
-                    <button type="button" className="btn btn-success">
-                      Continue
+                    <button
+                      type="submit"
+                      className="btn btn-success"
+                      // onClick={handleContinue}
+                    >
+                      <Link
+                        to="/payment"
+                        style={{ textDecoration: "none", color: "#fff" }}
+                      >
+                        Continue
+                      </Link>
                     </button>
                   </div>
                 </div>

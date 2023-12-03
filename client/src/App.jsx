@@ -11,6 +11,8 @@ import Detail from "./pages/Detail";
 import UserProvider from "./context/UseContext";
 import PlaceProvider from "./context/PlaceContext";
 import Bookings from "./pages/Bookings";
+import Payment from "./pages/Payment";
+import Confirmation from "./pages/Confirmation";
 
 const App = () => {
   return (
@@ -28,6 +30,8 @@ const App = () => {
                 <Route path="/support" element={<Support />} />
                 <Route path="/details/:id" element={<Detail />} />
                 <Route path="/bookings" element={<Bookings />} />
+                <Route path="/payment" element={<Payment />} />
+                <Route path="/confirmation" element={<Confirmation />} />
               </Routes>
             </div>
             <Footer />

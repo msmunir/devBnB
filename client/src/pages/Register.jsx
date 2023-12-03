@@ -54,6 +54,7 @@ const Register = () => {
           style={{
             background:
               "linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(108,108,108,1) 50%, rgba(0,0,0,1) 100%)",
+            boxShadow: "0px 0px 20px 0px #000",
             borderRadius: "1rem",
             color: "white",
             width: "70%",
