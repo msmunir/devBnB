@@ -4,11 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const Bookings = () => {
-  //loading data from server
-
   const [bookings, setBookings] = useState([]);
-  // const [activeModal, setActiveModal] = useState(null);
-
   const userState = useUser();
 
   // Get bookings
