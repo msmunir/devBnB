@@ -29,6 +29,22 @@ const Bookings = () => {
     }
   }, [userState.token]);
 
+  const handleDelete = (id) => {
+    axios
+      .delete(`http://localhost:8000/api/bookings/${id}`, {
+        headers: {
+          Authorization: `Bearer ${userState.token}`,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setBookings(bookings.filter((booking) => booking._id !== id));
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
   // Date format
   const formatDate = (date) => {
     return new Date(date).toLocaleDateString("en-GB", {
@@ -157,7 +173,8 @@ const Bookings = () => {
                     <button
                       type="button"
                       className="btn btn-danger"
-                      // onClick={handleDelete}
+                      // onClick={ handleDelete}
+                      onClick={() => handleDelete(booking._id)}
                     >
                       Delete
                     </button>
