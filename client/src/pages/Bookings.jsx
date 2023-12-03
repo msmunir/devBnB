@@ -34,10 +34,15 @@ const Bookings = () => {
     });
   };
 
-  // Calculate total price
-  const calculateTotalPrice = (checkin, checkout, pricePerNight) => {
+  // Calculate days difference
+  const calculateDaysDifference = (checkin, checkout) => {
     const totalNights = Math.abs(new Date(checkout) - new Date(checkin));
-    return totalNights * pricePerNight;
+    return totalNights / (1000 * 60 * 60 * 24);
+  };
+  // Calculate total price
+  const calculateTotalPrice = (checkin, checkout, price) => {
+    const totalNights = Math.abs(new Date(checkout) - new Date(checkin));
+    return (totalNights / (1000 * 60 * 60 * 24)) * price;
   };
 
   // const handleContinueClick = () => {
@@ -68,12 +73,15 @@ const Bookings = () => {
       }}
     >
       <div className="card-header">
-        Bookings
         {bookings.map((booking, index) => (
           <>
             <div
               className="row g-0 mb-3"
-              style={{ border: "1px solid hotpink" }}
+              style={{
+                // border: "1px solid hotpink",
+                borderRadius: "10px",
+                boxShadow: "0px 0px 20px 0px #000",
+              }}
             >
               <div className="col-md-4">
                 <img
@@ -89,7 +97,8 @@ const Bookings = () => {
                     Booking date: {formatDate(booking.checkin)} -{" "}
                     {formatDate(booking.checkout)}
                     <br />
-                    {/* Number of nights: {booking.totalNights()} */}
+                    Number of nights:{" "}
+                    {calculateDaysDifference(booking.checkin, booking.checkout)}
                     <br />
                     Price per night: {booking.place.price} kr
                     <hr />
@@ -100,9 +109,6 @@ const Bookings = () => {
                       booking.place.price
                     )}{" "}
                     kr
-                    {/* €{" "}
-                    {booking.totalPrice(booking.checkout - booking.checkin) *
-                      booking.place.pricePerNight} */}
                   </p>
                   <div className="button d-flex gap-2">
                     <button
