@@ -4,6 +4,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const Bookings = () => {
+  //loading data from server
+
   const [bookings, setBookings] = useState([]);
   // const [activeModal, setActiveModal] = useState(null);
 
@@ -35,7 +37,6 @@ const Bookings = () => {
       year: "numeric",
     });
   };
-
   // Calculate days difference
   const calculateDaysDifference = (checkin, checkout) => {
     const totalNights = Math.abs(new Date(checkout) - new Date(checkin));
