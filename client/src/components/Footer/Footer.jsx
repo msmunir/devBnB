@@ -113,14 +113,14 @@ const Footer = () => {
             </div>
             <div className="col-sm-6 col-md-4">
               <div className="footer-links">
-                <h4 className="text-uppercase">Social Media</h4>
+                <h4 className="text-uppercase">Hosting</h4>
                 <ul className="list-unstyled">
                   <li>
                     <a
                       href="#"
                       style={{ textDecoration: "none", color: "#b3b0b0" }}
                     >
-                      Facebook
+                      DevBnB your home
                     </a>
                   </li>
                   <li>
@@ -128,7 +128,7 @@ const Footer = () => {
                       href="#"
                       style={{ textDecoration: "none", color: "#b3b0b0" }}
                     >
-                      Twitter
+                      Hosting resources
                     </a>
                   </li>
                   <li>
@@ -136,7 +136,7 @@ const Footer = () => {
                       href="#"
                       style={{ textDecoration: "none", color: "#b3b0b0" }}
                     >
-                      Linkedin
+                      Community forum
                     </a>
                   </li>
                   <li>
@@ -144,7 +144,7 @@ const Footer = () => {
                       href="#"
                       style={{ textDecoration: "none", color: "#b3b0b0" }}
                     >
-                      Google Plus
+                      Hosting responsibly
                     </a>
                   </li>
                   <li>
@@ -152,7 +152,7 @@ const Footer = () => {
                       href="#"
                       style={{ textDecoration: "none", color: "#b3b0b0" }}
                     >
-                      Youtube
+                      devBnB-friendly apartments
                     </a>
                   </li>
                 </ul>

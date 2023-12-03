@@ -81,7 +81,7 @@ const Payment = () => {
                       type="radio"
                       name="flexRadioDefault"
                       id="flexRadioDefault1"
-                      checked
+                      //checked
                     />
                     <label
                       className="form-check-label"
@@ -157,7 +157,7 @@ const Payment = () => {
                         to="/confirmation"
                         style={{ textDecoration: "none", color: "#fff" }}
                       >
-                        Place your order
+                        Pay
                       </Link>
                     </button>
                   </div>
