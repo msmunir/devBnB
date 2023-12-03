@@ -12,9 +12,9 @@ const Footer = () => {
         {/* <hr
           style={{ color: "#8d7a7a55", width: "95%", marginLeft: "1.5rem" }}
         /> */}
-        <div className="row col-sm-6 col-md-12" style={{ color: "#fff" }}>
+        <div className="row col-sm-4 col-md-12" style={{ color: "#fff" }}>
           <div
-            className="row col-md-12 text-center pt-5"
+            className="row col-md-12 text-center mt-5 pt-5"
             style={{ borderTop: "1px solid #8d7a7a55" }}
           >
             <div className="col-sm-6 col-md-4">
@@ -159,22 +159,14 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          {/* footer-bottom */}
 
+          {/* footer-bottom */}
           <div
-            className="col-sm-6 col-md-12 mt-5 pt-4 pb-4"
+            className="row col-md-12 mt-5 pt-4 mb-3"
             style={{ borderTop: "1px solid #8d7a7a55", width: "100%" }}
           >
-            <div
-              className="footer-bottom"
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                // padding: "10px",
-              }}
-            >
-              <div className="footer-logo">
+            <div className="row col-sm-4 col-md-12 text-center">
+              <div className="col-sm-6 col-md-4">
                 {/* <span
                   style={{
                     position: "absolute",
@@ -194,23 +186,23 @@ const Footer = () => {
                   DevBnB
                 </p>
               </div>
-              <div className="footer-middle">
+              <div className="col-sm-6 col-md-4">
                 <p className="footer-company-name" style={{ color: "#8b8989" }}>
                   &copy; 2023 DevBnB Coders Inc.
                 </p>
               </div>
-              <div className="footer-icons d-flex gap-2 mb-3">
+              <div className="col-sm-6 col-md-4 mb-3">
                 <a href="#">
-                  <FaFacebook />
+                  <FaFacebook style={{ margin: "5px" }} />
                 </a>
                 <a href="#">
-                  <FaXTwitter />
+                  <FaXTwitter style={{ margin: "5px" }} />
                 </a>
                 <a href="#">
-                  <FaInstagramSquare />
+                  <FaInstagramSquare style={{ margin: "5px" }} />
                 </a>
                 <a href="#">
-                  <FaYoutube />
+                  <FaYoutube style={{ margin: "5px" }} />
                 </a>
               </div>
             </div>
