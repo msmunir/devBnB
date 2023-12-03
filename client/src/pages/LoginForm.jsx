@@ -61,7 +61,7 @@ const LoginForm = () => {
             boxShadow: "0px 0px 20px 0px #000",
             borderRadius: "1rem",
             color: "white",
-            width: "70%",
+            width: "50%",
           }}
         >
           <div className="card-body p-5">
