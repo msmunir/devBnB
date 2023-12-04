@@ -1,9 +1,23 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Payment = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form submitted");
+  };
+
+  const navigate = useNavigate();
+  // Solution 1
+  // const handlePayment = () => {
+  //   const payment = window.confirm("Are you sure you want to continue?");
+  //   if (payment) {
+  //     navigate("/confirmation");
+  //   }
+  // };
+
+  // Solution 2
+  const handlePayment = () => {
+    navigate("/confirmation");
   };
 
   return (
@@ -146,6 +160,7 @@ const Payment = () => {
                       type="submit"
                       // onClick={handleSubmit}
                       className="btn btn-md"
+                      onClick={handlePayment}
                       style={{
                         background:
                           "linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,117,255,1) 50%, rgba(0,0,0,1) 100%)",
@@ -153,12 +168,14 @@ const Payment = () => {
                         width: "45%",
                       }}
                     >
-                      <Link
+                      Pay
+                      {/* Solution 3 */}
+                      {/* <Link
                         to="/confirmation"
                         style={{ textDecoration: "none", color: "#fff" }}
                       >
                         Pay
-                      </Link>
+                      </Link> */}
                     </button>
                   </div>
                 </div>

@@ -1,11 +1,17 @@
 import { useEffect, useState } from "react";
 import { useUser } from "./../context/UseContext";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Bookings = () => {
   const [bookings, setBookings] = useState([]);
   const userState = useUser();
+
+  //Solution 1
+  const navigate = useNavigate();
+  const confirmBooking = () => {
+    navigate("/Payment");
+  };
 
   // Get bookings
   useEffect(() => {
@@ -110,14 +116,20 @@ const Bookings = () => {
                     >
                       Delete
                     </button>
-                    <button type="submit" className="btn btn-success">
-                      <Link
-                        to="/payment"
-                        style={{ textDecoration: "none", color: "#fff" }}
-                      >
+                    <button
+                      type="submit"
+                      className="btn btn-success"
+                      onClick={confirmBooking}
+                    >
+                      Continue
+                    </button>
+
+                    {/* Solution 2 */}
+                    {/* <button type="submit" className="btn btn-success">
+                      <Link to="/payment" style={{ textDecoration: "none", color: "#fff" }}>
                         Continue
                       </Link>
-                    </button>
+                    </button> */}
                   </div>
                 </div>
               </div>
